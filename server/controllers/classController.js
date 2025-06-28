@@ -4,16 +4,17 @@ exports.getClasses = async (req, res) => {
   try {
     const result = await pool.query(
       `SELECT
+        classes.id,
         classes.level,
-        classes.name,
-        teachers.name AS name
-        FROM classes
-        JOIN teachers ON classes.teacher_id = teachers.id`
+        classes.name AS class_name,
+        teachers.name AS teacher_name
+      FROM classes
+      JOIN teachers ON classes.teacher_id = teachers.id`
     )
 
     const classes = result.rows.map(record => ({
       level: record.level,
-      name: record.name,
+      name: record.class_name,
       formTeacher: {
         name: record.teacher_name
       }

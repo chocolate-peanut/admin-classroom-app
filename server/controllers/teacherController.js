@@ -3,7 +3,7 @@ const pool = require('../db')
 exports.getTeachers = async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT name, subject, email, contact_number FROM teachers`
+      `SELECT id, name, subject, email, contact_number FROM teachers`
     )
 
     res.status(200).json({ data: result.rows })

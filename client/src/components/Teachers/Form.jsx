@@ -15,13 +15,12 @@ const TeacherForm = ({
     try {
       await api.post("/teachers", values)
       alert("The teacher was added successfully!")
-    } catch (err) {
-      const errorMsg = err.response?.data?.error || "Failed to add teacher."
-      alert(errorMsg)
-    } finally {
       form.resetFields()
       onSuccess()
       setShowCreateForm(false)
+    } catch (err) {
+      const errorMsg = err.response?.data?.error || "Failed to add teacher."
+      alert(errorMsg)
     }
   }
 

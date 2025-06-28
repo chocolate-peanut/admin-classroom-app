@@ -30,7 +30,7 @@ const TeacherList = ({ teachers }) => {
     <Table
       columns={columns}
       dataSource={teachers || []}
-      rowKey={(record) => record.email}
+      rowKey={(record) => record.id}
       pagination={false}
     />
   )
