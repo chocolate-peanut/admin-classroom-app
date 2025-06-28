@@ -1,5 +1,18 @@
 const pool = require('../db')
 
+exports.getTeachers = async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT name, subject, email, contact_number FROM teachers`
+    )
+
+    res.status(200).json({ data: result.rows })
+  } catch (err) {
+    console.error('Error getting teacher:', err)
+    res.status(500).json({ error: "Internal server error." })
+  }
+}
+
 exports.createTeacher = async (req, res) => {
   let { name, subject, email, contactNumber } = req.body
 
@@ -51,18 +64,5 @@ exports.createTeacher = async (req, res) => {
       console.log(err)
       res.status(500).json({ error: "Internal server error." })
     }
-  }
-}
-
-exports.getTeachers = async (req, res) => {
-  try {
-    const result = await pool.query(
-      `SELECT name, subject, email, contact_number FROM teachers`
-    )
-
-    res.status(200).json({ data: result.rows })
-  } catch (err) {
-    console.error('Error getting teacher:', err)
-    res.status(500).json({ error: "Internal server error." })
   }
 }

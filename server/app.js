@@ -9,6 +9,6 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/teachers', teacherRoutes)
-// app.use('/api/classes', classRoutes)
+app.use('/api/classes', classRoutes)
 
 module.exports = app
