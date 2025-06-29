@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Button, Divider, Space, Spin } from "antd"
 import { PlusOutlined } from "@ant-design/icons"
 
-import TeacherForm from "components/Teachers/Form"
-import TeacherList from "components/Teachers/index"
+import TeacherForm from "pages/Teachers/Form"
+import TeacherList from "pages/Teachers/List"
 
 const TeachersPage = () => {
   const [teachers, setTeachers] = useState([])
@@ -15,7 +15,7 @@ const TeachersPage = () => {
       setLoading(true)
       const response = await fetch("http://localhost:8080/api/teachers")
       const data = await response.json()
-      setTeachers(data.data)
+      setTeachers(data.data || [])
     } catch (err) {
       console.error(err)
     } finally {
@@ -29,7 +29,7 @@ const TeachersPage = () => {
 
   return (
     <div style={{ padding: "24px" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="d-flex align-items-center justify-content-between">
         <h2 style={{ margin: "0px", fontWeight: 800 }}>
           {showCreateForm ? "Add Teacher" : "Teachers"}
         </h2>
@@ -70,7 +70,11 @@ const TeachersPage = () => {
               onSuccess={fetchTeachers}
               setShowCreateForm={setShowCreateForm}
             />
-          ) : <TeacherList teachers={teachers} />
+          ) : (
+            (teachers?.length > 0) ?
+              <TeacherList teachers={teachers} /> :
+              <p>There's no existing teachers. Please add new teacher.</p>
+          )
         )
       }
     </div>

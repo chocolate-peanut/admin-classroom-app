@@ -2,6 +2,7 @@ import React from "react"
 import { Form, Input, Button, Select } from "antd"
 
 import api from "utils/api"
+import { subjects } from "./assets"
 
 const { Option } = Select
 
@@ -46,17 +47,11 @@ const TeacherForm = ({
           rules={[{ required: true, message: "Subject is required." }]}
         >
           <Select placeholder="Select a subject">
-            <Option value="English Language">English Language</Option>
-            <Option value="Mother Tongue Language">Mother Tongue Language</Option>
-            <Option value="Mathematics">Mathematics</Option>
-            <Option value="Science">Science</Option>
-            <Option value="Art">Art</Option>
-            <Option value="Music">Music</Option>
-            <Option value="Physical Education">Physical Education</Option>
-            <Option value="Social Studies">Social Studies</Option>
-            <Option value="Character and Citizenship Education">
-              Character and Citizenship Education
-            </Option>
+            {subjects.map((subject) => (
+              <Option key={subject.value} value={subject.value}>
+                {subject.value}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
 
@@ -72,13 +67,13 @@ const TeacherForm = ({
         </Form.Item>
 
         <Form.Item
-          label="Contact Number"
+          label="Work Contact Number"
           name="contactNumber"
           rules={[
-            { required: true, message: "Contact Number is required." },
+            { required: true, message: "Work Contact Number is required." },
             {
               pattern: /^\d{5,15}$/,
-              message: "Contact number must be 5-15 digits."
+              message: "Work contact number must be 5-15 digits."
             }
           ]}
         >

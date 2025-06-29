@@ -65,7 +65,7 @@ exports.createClass = async (req, res) => {
     )
 
     if (classResult.rows.length > 0) {
-      return res.status(400).json({ error: "Teacher is already assigned as form teacher to a class." })
+      return res.status(400).json({ error: "Teacher is already assigned as form teacher to a class. Please select another teacher." })
     }
 
     const insertClass = await pool.query(

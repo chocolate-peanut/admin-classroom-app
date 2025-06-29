@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react"
 import { Form, Input, Button, Select } from "antd"
 
 import api from "utils/api"
+import { levels } from "./assets"
 
 const { Option } = Select
-
-const levels = [
-  "Primary 1",
-  "Primary 2",
-  "Primary 3",
-  "Primary 4",
-  "Primary 5",
-  "Primary 6"
-]
 
 const ClassForm = ({
   teachers,

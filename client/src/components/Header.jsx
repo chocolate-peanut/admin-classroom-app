@@ -1,6 +1,7 @@
-import React from "react"
 import { Menu } from "antd"
 import { useNavigate, useLocation } from "react-router-dom"
+
+import logo from "assets/logo.svg"
 
 const Header = () => {
   const navigate = useNavigate()
@@ -12,23 +13,30 @@ const Header = () => {
 
   const items = [
     {
-      label: "Classes",
-      key: "/classes",
-    },
-    {
       label: "Teachers",
       key: "/teachers",
+    },
+    {
+      label: "Classes",
+      key: "/classes",
     },
   ]
 
   return (
-    <Menu
-      style={{ fontWeight: 600, fontSize: "14px" }}
-      onClick={onClick}
-      selectedKeys={[location.pathname]}
-      mode="horizontal"
-      items={items}
-    />
+    <div className="d-flex">
+      <img
+        src={logo}
+        alt="Logo"
+        style={{ height: "40px", marginRight: "24px" }}
+      />
+      <Menu
+        style={{ fontWeight: 600, fontSize: "14px" }}
+        onClick={onClick}
+        selectedKeys={[location.pathname]}
+        mode="horizontal"
+        items={items}
+      />
+    </div>
   )
 }
 

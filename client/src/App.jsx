@@ -1,8 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+
 import Header from 'components/Header'
-import TeachersPage from 'pages/TeachersPage'
-import ClassesPage from './pages/ClassesPage'
+import TeachersPage from 'pages/Teachers/index'
+import ClassesPage from './pages/Classes/index'
 
 const App = () => (
   <BrowserRouter>

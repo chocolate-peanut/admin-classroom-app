@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Button, Divider, Space, Spin } from "antd"
 import { PlusOutlined } from "@ant-design/icons"
 
-import ClassForm from "components/Classes/Form"
-import ClassList from "components/Classes/index"
+import ClassForm from "pages/Classes/Form"
+import ClassList from "pages/Classes/List"
 
 const ClassesPage = () => {
   const [classes, setClasses] = useState([])
@@ -16,7 +16,7 @@ const ClassesPage = () => {
       setLoading(true)
       const response = await fetch("http://localhost:8080/api/classes")
       const data = await response.json()
-      setClasses(data.data)
+      setClasses(data.data || [])
     } catch (err) {
       console.error(err)
     } finally {
@@ -29,7 +29,7 @@ const ClassesPage = () => {
       setLoading(true)
       const response = await fetch("http://localhost:8080/api/teachers")
       const data = await response.json()
-      setTeachers(data.data)
+      setTeachers(data.data || [])
     } catch (err) {
       console.error(err)
     } finally {
@@ -44,7 +44,7 @@ const ClassesPage = () => {
 
   return (
     <div style={{ padding: "24px" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="d-flex align-items-center justify-content-between">
         <h2 style={{ margin: "0px", fontWeight: 800 }}>
           {showCreateForm ? "Add Class" : "Classes"}
         </h2>
@@ -86,7 +86,11 @@ const ClassesPage = () => {
               onSuccess={fetchClasses}
               setShowCreateForm={setShowCreateForm}
             />
-          ) : <ClassList classes={classes} />
+          ) : (
+            (classes?.length > 0) ?
+              <ClassList classes={classes} /> :
+              <p>There's no existing classes. Please add new class.</p>
+          )
         )
       }
     </div>

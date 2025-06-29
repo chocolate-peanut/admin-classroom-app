@@ -36,9 +36,9 @@ exports.createTeacher = async (req, res) => {
   }
 
   if (!contactNumber) {
-    return res.status(400).json({ error: "Contact number is required." })
+    return res.status(400).json({ error: "Work contact number is required." })
   } else if (!/^\d{5,15}$/.test(contactNumber)) {
-    return res.status(400).json({ error: "Contact number must contain only digits (5-15 numbers)." })
+    return res.status(400).json({ error: "Work contact number must contain only digits (5-15 numbers)." })
   }
 
   if (!name || !subject || !email || !contactNumber) {
