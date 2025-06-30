@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS classes (
 ```
 
 ### Setup Backend Environment
-Go to /server and create a file: ./env, then paste the following configuration to the file:
+Go to /server and create a file: ./env, then paste the following configuration into the file:
 ```
 (If your local DB does NOT require a password):
 DATABASE_URL=postgresql://YOUR_USERNAME@localhost:5432/admin_classroom
@@ -81,3 +81,44 @@ npm install / yarn install
 npm run dev / yarn dev
 ```
 > Your frontend will run at: http://localhost:5173
+
+---
+
+## Development Assumptions
+
+- This project does **not** include user authentication — any admin can register teachers and classes.
+- Each teacher’s `email` is unique in the system.
+- A teacher can only be assigned as the form teacher for **one class**.
+- Basic input validation is handled on both frontend and backend.
+- The frontend and backend are designed for local development and testing only.
+
+---
+
+## Implemented Features
+
+**Teachers**
+
+- Add a new teacher with name, subject, email, and contact number.
+- View a list of all registered teachers in a table.
+- Form validates required fields and displays clear error messages.
+
+**Classes**
+
+- Add a new class with level, name, and assign a form teacher.
+- View a list of all classes with their assigned form teachers.
+- Class form prevents assigning the same teacher to multiple classes.
+
+**API**
+
+- Fully RESTful API for teachers and classes:
+  - `POST /api/teachers` – Register a new teacher.
+  - `GET /api/teachers` – Retrieve all teachers.
+  - `POST /api/classes` – Register a new class with a teacher.
+  - `GET /api/classes` – Retrieve all classes with form teachers.
+- API error responses follow the spec: `{ "error": "Meaningful message" }`.
+
+**Frontend**
+
+- Responsive layout built with React (Vite) + Bootstrap + Ant Design.
+- Navigation header to switch between Teachers and Classes.
+- User-friendly form design with loaders during fetch, and alerts with proper messages.
