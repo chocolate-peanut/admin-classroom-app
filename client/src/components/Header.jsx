@@ -23,7 +23,7 @@ const Header = () => {
   ]
 
   return (
-    <div className="d-flex">
+    <div className="d-md-flex">
       <img
         src={logo}
         alt="Logo"

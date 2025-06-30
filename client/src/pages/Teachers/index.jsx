@@ -29,11 +29,17 @@ const TeachersPage = () => {
 
   return (
     <div style={{ padding: "24px" }}>
-      <div className="d-flex align-items-center justify-content-between">
-        <h2 style={{ margin: "0px", fontWeight: 800 }}>
+      <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+        <h2
+          className="text-center text-md-start"
+          style={{ margin: "0px", fontWeight: 800 }}>
+
           {showCreateForm ? "Add Teacher" : "Teachers"}
         </h2>
-        <div style={{ display: "flex", gap: "8px" }}>
+        <div
+          className="d-flex flex-column flex-md-row align-items-center gap-2"
+          style={{ marginTop: showCreateForm ? "0" : "0" }}
+        >
           {showCreateForm && (
             <Button
               color="default"
