@@ -86,7 +86,7 @@ npm run dev / yarn dev
 
 ## Development Assumptions
 
-- This project does **not** include user authentication — any admin can register teachers and classes.
+- This project does **not** include user authentication, which means any admin can register teachers and classes.
 - Each teacher’s `email` is unique in the system.
 - A teacher can only be assigned as the form teacher for **one class**.
 - Basic input validation is handled on both frontend and backend.
