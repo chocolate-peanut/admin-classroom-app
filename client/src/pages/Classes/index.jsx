@@ -18,6 +18,7 @@ const ClassesPage = () => {
       const data = await response.json()
       setClasses(data.data || [])
     } catch (err) {
+      alert(err)
       console.error(err)
     } finally {
       setLoading(false)

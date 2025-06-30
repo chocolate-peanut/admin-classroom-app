@@ -17,6 +17,7 @@ const TeachersPage = () => {
       const data = await response.json()
       setTeachers(data.data || [])
     } catch (err) {
+      alert(err)
       console.error(err)
     } finally {
       setLoading(false)
